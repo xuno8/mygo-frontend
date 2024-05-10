@@ -32,6 +32,7 @@
         </svg>
       </button>
       <button
+        type="button"
         @click="onRandom"
         class="random-button flex items-center justify-center p-2"
       >
@@ -55,6 +56,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "SearchBar",
   data() {
@@ -63,11 +66,32 @@ export default {
     };
   },
   methods: {
-    onSearch() {
-      console.log("搜尋:", this.searchQuery);
+    async onSearch() {
+      if (this.searchQuery.trim() === "") {
+        alert("請輸入關鍵字");
+        return;
+      }
+      try {
+        const response = await axios.post(
+          "https://mygowebapp.azurewebsites.net/search",
+          {
+            query: this.searchQuery,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(response.data); // 處理響應數據
+        // 根據需要更新界面或進行導航
+      } catch (error) {
+        console.error("ERROR!", error);
+        alert("ERROR!!!!!");
+      }
     },
     onRandom() {
-      console.log("隨機功能");
+      alert("此功能開發中...");
     },
   },
 };
