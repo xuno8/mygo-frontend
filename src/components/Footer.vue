@@ -10,6 +10,7 @@
       >
         贊助我們
       </button> -->
+      <p class="source-code-pro">v1.0.0</p>
     </div>
   </footer>
 </template>
