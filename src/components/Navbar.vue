@@ -3,6 +3,7 @@
     <div class="container mx-auto px-4 py-4 flex items-center">
       <router-link to="/">
         <img src="@/assets/logo.png" alt="Logo" class="h-10" />
+        <!-- <span class="site-title ml-3">搜買夠!!!!!</span> -->
       </router-link>
     </div>
   </nav>
@@ -14,4 +15,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.site-title {
+  font-size: 20px;
+  /* color: #333; */
+  font-weight: bold;
+}
+</style>
