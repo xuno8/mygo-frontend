@@ -56,21 +56,29 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import axios from "axios";
-import { useRouter } from "vue-router";
 
 export default {
   name: "SearchBar",
   data() {
-    return {
-      searchQuery: "",
-    };
+    return {};
   },
-  setup() {
-    const router = useRouter();
-    return { router };
+  computed: {
+    ...mapState(["currentSearchQuery"]),
+
+    searchQuery: {
+      get() {
+        return this.currentSearchQuery;
+      },
+      set(value) {
+        this.setCurrentSearchQuery(value);
+      },
+    },
   },
   methods: {
+    ...mapMutations(["setCurrentSearchQuery"]),
+
     async onSearch() {
       if (this.searchQuery.trim() === "") {
         alert("請輸入關鍵字");
@@ -78,12 +86,13 @@ export default {
       }
       try {
         await this.$store.dispatch("fetchSearchResults", this.searchQuery);
-        this.router.push("/search-results"); // 搜尋成功後跳轉頁面
+        this.$router.push("/search-results");
       } catch (error) {
         console.error("Search Error: ", error);
         alert("ERROR!!!!!");
       }
     },
+
     onRandom() {
       alert("此功能開發中...");
     },

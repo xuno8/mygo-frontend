@@ -9,15 +9,19 @@ export default createStore({
     setSearchResults(state, results) {
       state.searchResults = results;
     },
+    setCurrentSearchQuery(state, query) {
+      state.currentSearchQuery = query;
+    },
   },
   actions: {
     fetchSearchResults({ commit }, query) {
+      commit("setCurrentSearchQuery", query);
       axios
         .post("https://mygowebapp.azurewebsites.net/search", {
           query: query,
         })
         .then((response) => {
-          //   console.log(response.data);
+          console.log(response.data);
           commit("setSearchResults", response.data);
         })
         .catch((error) => {

@@ -5,7 +5,8 @@
       <h1>搜尋結果</h1>
       <ul>
         <li v-for="result in searchResults" :key="result.id">
-          {{ result.text }}
+          {{ result.text }} - {{ result.episode }} -
+          {{ formatTime(result.start_time) }}
         </li>
       </ul>
     </div>
@@ -25,6 +26,15 @@ export default {
   computed: {
     searchResults() {
       return this.$store.state.searchResults;
+    },
+  },
+  methods: {
+    formatTime(timeString) {
+      const parts = timeString.split(":");
+      if (parts.length >= 3) {
+        return `${parts[1]}:${parts[2].split(",")[0]}`;
+      }
+      return timeString;
     },
   },
 };
