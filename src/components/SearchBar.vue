@@ -57,6 +57,7 @@
 
 <script>
 import axios from "axios";
+import { useRouter } from "vue-router";
 
 export default {
   name: "SearchBar",
@@ -65,6 +66,10 @@ export default {
       searchQuery: "",
     };
   },
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
   methods: {
     async onSearch() {
       if (this.searchQuery.trim() === "") {
@@ -72,21 +77,10 @@ export default {
         return;
       }
       try {
-        const response = await axios.post(
-          "https://mygowebapp.azurewebsites.net/search",
-          {
-            query: this.searchQuery,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        console.log(response.data); // 處理響應數據
-        // 根據需要更新界面或進行導航
+        await this.$store.dispatch("fetchSearchResults", this.searchQuery);
+        this.router.push("/search-results"); // 搜尋成功後跳轉頁面
       } catch (error) {
-        console.error("ERROR!", error);
+        console.error("Search Error: ", error);
         alert("ERROR!!!!!");
       }
     },
