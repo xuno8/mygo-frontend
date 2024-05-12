@@ -4,7 +4,11 @@
     <div class="results-container" v-if="searchResults.length">
       <h1>搜尋結果</h1>
       <ul>
-        <li v-for="result in searchResults" :key="result.id">
+        <li
+          v-for="result in searchResults"
+          :key="result.id"
+          @click="viewImage(result.id)"
+        >
           <h2 class="result-title">{{ result.text }}</h2>
           <p class="result-detail">集數：{{ result.episode }}</p>
           <p class="result-detail">時間：{{ formatTime(result.start_time) }}</p>
@@ -12,7 +16,8 @@
       </ul>
     </div>
     <div v-else>
-      <p>沒有找到任何結果。</p>
+      <p class="no-results">沒有找到任何結果。</p>
+      <img src="@/assets/no-results.jpeg" alt="No Results" />
     </div>
   </div>
 </template>
@@ -36,6 +41,9 @@ export default {
         return `${parts[1]}:${parts[2].split(",")[0]}`;
       }
       return timeString;
+    },
+    viewImage(id) {
+      this.$router.push({ name: "ImageViewer", params: { id } });
     },
   },
 };
@@ -66,7 +74,13 @@ export default {
   font-size: 18px;
   margin-bottom: 5px;
   padding: 10px 0;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
   /* border-bottom: 1px solid #ccc; */
+}
+.results-container li:hover {
+  background-color: #f0f0f0;
+  color: #333;
 }
 
 .result-title {
@@ -79,5 +93,10 @@ export default {
   font-size: 16px;
   /* margin-left: 20px; */
   /* text-align: left; */
+}
+.no-results {
+  font-size: 24px;
+  margin-bottom: 10px;
+  padding: 20px 0px 5px;
 }
 </style>
