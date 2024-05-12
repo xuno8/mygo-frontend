@@ -83,6 +83,9 @@ export default {
       if (this.searchQuery.trim() === "") {
         alert("請輸入關鍵字");
         return;
+      } else if (this.searchQuery.trim() === "愛熊熊") {
+        alert("nlnlayaya");
+        return;
       }
       try {
         await this.$store.dispatch("fetchSearchResults", this.searchQuery);
