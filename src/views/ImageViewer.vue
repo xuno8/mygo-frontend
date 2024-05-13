@@ -41,14 +41,12 @@ export default {
         });
     },
     formatTime(timeString) {
-      // 假設 timeString 是 "hh:mm:ss,sss" 格式
       const parts = timeString.split(":");
       if (parts.length >= 3) {
-        // 只取 "mm:ss" 部分
-        const seconds = parts[2].split(",")[0]; // 移除毫秒部分
+        const seconds = parts[2].split(",")[0];
         return `${parts[1]}:${seconds}`;
       }
-      return timeString; // 如果格式不符合預期，返回原始字符串
+      return timeString;
     },
   },
 };
@@ -56,21 +54,21 @@ export default {
 
 <style scoped>
 .image-viewer-container {
-  padding-top: 20px; /* 增加與頂部的間距 */
+  padding-top: 20px;
 }
 
 .image-viewer-container img {
   width: 100%;
-  max-width: 1080px; /* 調整為適合的最大寬度 */
+  max-width: 1080px;
 }
 
 .image-viewer-container p {
-  margin-bottom: 10px; /* 統一段落間距 */
+  margin-bottom: 10px;
 }
 
 .image-viewer-container .text-title {
-  font-size: 48px; /* 增大字體大小 */
-  font-weight: bold; /* 字體加粗 */
-  margin-bottom: 20px; /* 增加下方間距，避免與下一行文字太擠 */
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 </style>

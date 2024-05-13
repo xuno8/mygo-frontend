@@ -29,6 +29,6 @@ body {
   overflow-y: hidden;
 }
 #app {
-  position: relative; /* 確保絕對定位元素基於此容器定位 */
+  position: relative;
 }
 </style>

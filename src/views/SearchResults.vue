@@ -65,9 +65,9 @@ export default {
 .results-container ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 60px; /* 留出足夠空間給底部欄 */
-  max-height: calc(100vh - 280px); /* 設定最大高度為視窗高度減去上下空間 */
-  overflow-y: auto; /* 允許垂直滾動 */
+  margin-bottom: 60px;
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
 }
 
 .results-container li {

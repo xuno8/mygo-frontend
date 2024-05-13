@@ -10,9 +10,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/search-results", // 定義新的路由路徑
+    path: "/search-results",
     name: "SearchResults",
-    component: SearchResults, // 指定對應的組件
+    component: SearchResults,
   },
   {
     path: "/image/:id",
